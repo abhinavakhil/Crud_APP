@@ -1,0 +1,49 @@
+<h3 class="text-center mt-2">USER CRUD APPLICATION</h3>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8" >
+      <form (ngSubmit)="createUser()" #formData="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" [(ngModel)]="user.name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" [(ngModel)]="user.email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone" [(ngModel)]="user.phone" required>
+      </div>
+      <button
+        class="btn btn-success btn-block"
+        type="submit" [disabled]="!formData.valid">Add</button>
+    </form>
+    </div>
+  </div>
+  <hr style=" border: solid 1px #fff;"/>
+
+  <div *ngFor="let user of currentUsers" >
+   <div class="row mt-2">
+     <div class="col-md-3">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.Name"
+      >
+     </div>
+    <div class="col-md-3">
+     <input type="text" class="form-control" [(ngModel)]="user.email">
+    </div>
+   <div class="col-md-3">
+    <input type="text" class="form-control" [(ngModel)]="user.phone">
+   </div>
+   <div class="col-md-3">
+    <button type="button" class="btn btn-warning" (click)="updateUser(user.id,{Name:user.Name,email:user.email,phone:user.phone})">Update</button> |
+    <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+   </div>
+  </div>
+  </div>
+</div>
+
